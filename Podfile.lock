@@ -1,0 +1,15 @@
+PODS:
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SnapKit (0.19.1)
+
+DEPENDENCIES:
+  - SDWebImage
+  - SnapKit
+
+SPEC CHECKSUMS:
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+
+COCOAPODS: 0.39.0
