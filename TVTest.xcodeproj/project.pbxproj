@@ -13,17 +13,18 @@
 		B42E1DF61C5BA7A200BDAC77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B42E1DF41C5BA7A200BDAC77 /* LaunchScreen.storyboard */; };
 		B42E1E011C5BA7A200BDAC77 /* iOSTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E1E001C5BA7A200BDAC77 /* iOSTestTests.swift */; };
 		B42E1E0C1C5BA7A200BDAC77 /* iOSTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42E1E0B1C5BA7A200BDAC77 /* iOSTestUITests.swift */; };
-		B42E1E171C5BA7CB00BDAC77 /* TVLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E59FAD1C5B7BC30000A060 /* TVLayoutController.swift */; };
 		B42E1E1A1C5BAAB000BDAC77 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B42E1E191C5BAAB000BDAC77 /* Storyboard.storyboard */; };
 		B43D65B21C5B83BC00BEDDC4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43D65B11C5B83BC00BEDDC4 /* MapKit.framework */; };
 		B4423DD31C5B729C00B9B0A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4423DD21C5B729C00B9B0A7 /* AppDelegate.swift */; };
 		B4423DD51C5B729C00B9B0A7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4423DD41C5B729C00B9B0A7 /* FirstViewController.swift */; };
-		B4423DD71C5B729C00B9B0A7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4423DD61C5B729C00B9B0A7 /* SecondViewController.swift */; };
 		B4423DDA1C5B729C00B9B0A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4423DD81C5B729C00B9B0A7 /* Main.storyboard */; };
 		B4423DDC1C5B729D00B9B0A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4423DDB1C5B729D00B9B0A7 /* Assets.xcassets */; };
 		B4423DE71C5B729D00B9B0A7 /* TVTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4423DE61C5B729D00B9B0A7 /* TVTestTests.swift */; };
 		B4423DF21C5B729D00B9B0A7 /* TVTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4423DF11C5B729D00B9B0A7 /* TVTestUITests.swift */; };
-		B4E59FAE1C5B7BC30000A060 /* TVLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E59FAD1C5B7BC30000A060 /* TVLayoutController.swift */; };
+		B47FA6481C805D18003B29FE /* CollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */; };
+		B47FA6491C805D18003B29FE /* CollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */; };
+		B47FA64B1C806089003B29FE /* CPFShelfCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA64A1C806089003B29FE /* CPFShelfCells.swift */; };
+		B47FA64C1C806089003B29FE /* CPFShelfCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA64A1C806089003B29FE /* CPFShelfCells.swift */; };
 		B4EC26D91C5BBD600096A602 /* CPFShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */; };
 		DB2EA0F5877A010D76E5AAB4 /* Pods_TVTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544928FE1E318C066251F8F /* Pods_TVTest.framework */; };
 /* End PBXBuildFile section */
@@ -80,7 +81,6 @@
 		B4423DCF1C5B729C00B9B0A7 /* TVTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4423DD21C5B729C00B9B0A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4423DD41C5B729C00B9B0A7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		B4423DD61C5B729C00B9B0A7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		B4423DD91C5B729C00B9B0A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4423DDB1C5B729D00B9B0A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4423DDD1C5B729D00B9B0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +90,8 @@
 		B4423DED1C5B729D00B9B0A7 /* TVTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4423DF11C5B729D00B9B0A7 /* TVTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTestUITests.swift; sourceTree = "<group>"; };
 		B4423DF31C5B729D00B9B0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4E59FAD1C5B7BC30000A060 /* TVLayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVLayoutController.swift; sourceTree = "<group>"; };
+		B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelper.swift; sourceTree = "<group>"; };
+		B47FA64A1C806089003B29FE /* CPFShelfCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFShelfCells.swift; sourceTree = "<group>"; };
 		B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFShelfView.swift; sourceTree = "<group>"; };
 		BC42A8E4CE63C34D7797EE28 /* Pods_iOSTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8559C7323672B55A5FA6796 /* Pods-TVTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVTest/Pods-TVTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -218,9 +219,9 @@
 			children = (
 				B4423DD21C5B729C00B9B0A7 /* AppDelegate.swift */,
 				B4423DD41C5B729C00B9B0A7 /* FirstViewController.swift */,
-				B4423DD61C5B729C00B9B0A7 /* SecondViewController.swift */,
-				B4E59FAD1C5B7BC30000A060 /* TVLayoutController.swift */,
 				B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */,
+				B47FA64A1C806089003B29FE /* CPFShelfCells.swift */,
+				B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */,
 				B4423DD81C5B729C00B9B0A7 /* Main.storyboard */,
 				B4423DDB1C5B729D00B9B0A7 /* Assets.xcassets */,
 				B4423DDD1C5B729D00B9B0A7 /* Info.plist */,
@@ -578,8 +579,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B47FA64C1C806089003B29FE /* CPFShelfCells.swift in Sources */,
 				B42E1DEC1C5BA7A100BDAC77 /* AppDelegate.swift in Sources */,
-				B42E1E171C5BA7CB00BDAC77 /* TVLayoutController.swift in Sources */,
+				B47FA6491C805D18003B29FE /* CollectionViewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,11 +605,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4423DD71C5B729C00B9B0A7 /* SecondViewController.swift in Sources */,
 				B4423DD31C5B729C00B9B0A7 /* AppDelegate.swift in Sources */,
+				B47FA6481C805D18003B29FE /* CollectionViewHelper.swift in Sources */,
 				B4EC26D91C5BBD600096A602 /* CPFShelfView.swift in Sources */,
 				B4423DD51C5B729C00B9B0A7 /* FirstViewController.swift in Sources */,
-				B4E59FAE1C5B7BC30000A060 /* TVLayoutController.swift in Sources */,
+				B47FA64B1C806089003B29FE /* CPFShelfCells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

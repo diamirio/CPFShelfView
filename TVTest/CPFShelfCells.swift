@@ -1,9 +1,9 @@
 //
-//  FirstViewController.swift
-//  TVLayout
+//  CPFShelfCells.swift
+//  TVTest
 //
-//  Created by MarioHahn on 29/01/16.
-//  Copyright © 2016 Mario Hahn. All rights reserved.
+//  Created by Dominik Arnhof on 26.02.16.
+//  Copyright © 2016 Tailored Apps. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class ImageCollectionViewCell : UICollectionViewCell {
     
     
     var imageView: UIImageView
-
+    
     
     override init(frame: CGRect) {
         imageView = UIImageView()
@@ -33,7 +33,7 @@ class ImageCollectionViewCell : UICollectionViewCell {
             make.edges.equalTo(self.contentView)
         }
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -42,13 +42,18 @@ class ImageCollectionViewCell : UICollectionViewCell {
 
 class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    weak var dataSource: ShelfViewDataSource?
+    weak var delegate: ShelfViewDelegate?
+    
+    var section = 0
+    
     override var preferredFocusedView: UIView? {
         return collectionView
     }
     
     lazy var header: HeaderView = {
         let header = HeaderView()
-        header.titleLabel.text = "oachkatzlschwoaf ole ole ole ole"
+        header.titleLabel.text = "abcdefghijklmnopqrstuvwxyz"
         return header
     }()
     
@@ -59,7 +64,8 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.registerClass(ImageCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(ImageCollectionViewCell.self))
+        collectionView.register(UICollectionViewCell.self)
+        collectionView.register(ImageCollectionViewCell.self)
         collectionView.clipsToBounds = false
         return collectionView
     }()
@@ -69,11 +75,13 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return dataSource?.cpf_collectionView(collectionView, numberOfItemsInSection: 0) ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(ImageCollectionViewCell.self), forIndexPath: indexPath) as! ImageCollectionViewCell
+        guard let cell = dataSource?.cpf_collectionView(collectionView, cellForItemAtIndexPath: indexPath) else {
+            return collectionView.dequeueReusableCell(forIndexPath: indexPath) as UICollectionViewCell
+        }
         return cell
     }
     
@@ -100,7 +108,7 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
         
         header.frame = CGRect(x: 0, y: 0, width: headerSize().width, height: headerSize().height)
         
-
+        
     }
     
     func headerSize() -> CGSize {
@@ -111,7 +119,7 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         
         var adjustOffset = false
-
+        
         if let cell = context.nextFocusedView where cell.isDescendantOfView(collectionView) {
             let cellFrameConverted = convertRect(cell.frame, fromView: collectionView)
             print(cellFrameConverted.minX)
@@ -122,12 +130,23 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
         coordinator.addCoordinatedAnimations({
             self.header.frame = CGRect(x: 0, y: adjustOffset ? -50 : 0, width: self.headerSize().width, height: self.headerSize().height)
             }, completion: {
-
+                
         })
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        delegate?.cpf_collectionView(collectionView, didSelectItemAtIndexPath: NSIndexPath(forItem: indexPath.item, inSection: section))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func register(cells: [String]) {
+        for cell in cells {
+            collectionView.registerClass(NSClassFromString(cell), forCellWithReuseIdentifier: cell)
+        }
     }
     
 }
@@ -152,61 +171,3 @@ class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-class LayoutController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
-    override init(collectionViewLayout layout: UICollectionViewLayout) {
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
-        
-        super.init(collectionViewLayout: layout)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Vertical
-        
-        super.init(collectionViewLayout: layout)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        collectionView?.registerClass(HorizontalCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(HorizontalCollectionViewCell.self))
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 10
-    }
-    
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(NSStringFromClass(HorizontalCollectionViewCell.self), forIndexPath: indexPath) as! HorizontalCollectionViewCell
-        return cell
-    }
-    
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 350)
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 50, left: 10, bottom: 50, right: 10)
-    }
-    
-    override func collectionView(collectionView: UICollectionView, canFocusItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-}
-
