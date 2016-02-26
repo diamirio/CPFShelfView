@@ -25,6 +25,8 @@
 		B47FA6491C805D18003B29FE /* CollectionViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */; };
 		B47FA64B1C806089003B29FE /* CPFShelfCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA64A1C806089003B29FE /* CPFShelfCells.swift */; };
 		B47FA64C1C806089003B29FE /* CPFShelfCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FA64A1C806089003B29FE /* CPFShelfCells.swift */; };
+		B491106B1C80A23000B21276 /* CPFDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B491106A1C80A23000B21276 /* CPFDataModels.swift */; };
+		B491106C1C80A23000B21276 /* CPFDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B491106A1C80A23000B21276 /* CPFDataModels.swift */; };
 		B4EC26D91C5BBD600096A602 /* CPFShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */; };
 		DB2EA0F5877A010D76E5AAB4 /* Pods_TVTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0544928FE1E318C066251F8F /* Pods_TVTest.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,7 @@
 		B4423DF31C5B729D00B9B0A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHelper.swift; sourceTree = "<group>"; };
 		B47FA64A1C806089003B29FE /* CPFShelfCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFShelfCells.swift; sourceTree = "<group>"; };
+		B491106A1C80A23000B21276 /* CPFDataModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFDataModels.swift; sourceTree = "<group>"; };
 		B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPFShelfView.swift; sourceTree = "<group>"; };
 		BC42A8E4CE63C34D7797EE28 /* Pods_iOSTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8559C7323672B55A5FA6796 /* Pods-TVTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVTest/Pods-TVTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 				B4423DD41C5B729C00B9B0A7 /* FirstViewController.swift */,
 				B4EC26D81C5BBD600096A602 /* CPFShelfView.swift */,
 				B47FA64A1C806089003B29FE /* CPFShelfCells.swift */,
+				B491106A1C80A23000B21276 /* CPFDataModels.swift */,
 				B47FA6471C805D18003B29FE /* CollectionViewHelper.swift */,
 				B4423DD81C5B729C00B9B0A7 /* Main.storyboard */,
 				B4423DDB1C5B729D00B9B0A7 /* Assets.xcassets */,
@@ -580,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B47FA64C1C806089003B29FE /* CPFShelfCells.swift in Sources */,
+				B491106C1C80A23000B21276 /* CPFDataModels.swift in Sources */,
 				B42E1DEC1C5BA7A100BDAC77 /* AppDelegate.swift in Sources */,
 				B47FA6491C805D18003B29FE /* CollectionViewHelper.swift in Sources */,
 			);
@@ -606,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4423DD31C5B729C00B9B0A7 /* AppDelegate.swift in Sources */,
+				B491106B1C80A23000B21276 /* CPFDataModels.swift in Sources */,
 				B47FA6481C805D18003B29FE /* CollectionViewHelper.swift in Sources */,
 				B4EC26D91C5BBD600096A602 /* CPFShelfView.swift in Sources */,
 				B4423DD51C5B729C00B9B0A7 /* FirstViewController.swift in Sources */,

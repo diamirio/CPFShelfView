@@ -1,0 +1,2 @@
+* Section title animation fix
+* Find a way to get the size of the focused UIImageView (adjustsImageWhenAncestorFocused)

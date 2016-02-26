@@ -46,11 +46,19 @@ class FirstViewController: UIViewController, ShelfViewDataSource, ShelfViewDeleg
     }
     
     func cpf_collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(forIndexPath: indexPath) as TestCell
+        let cell: CPFPosterCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.model = CPFPosterModel(title: "Title \(indexPath.item)", imageURL: "https://placehold.it/1280x720", titleType: .FocusedOnly)
+        return cell
     }
     
     func cpf_collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print(indexPath)
+    }
+    
+    func cpf_collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let cellHeight = collectionView.bounds.height
+        
+        return CGSize(width: cellHeight / 1.5, height: cellHeight)
     }
 }
 

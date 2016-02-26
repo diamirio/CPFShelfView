@@ -10,20 +10,43 @@ import UIKit
 import SnapKit
 import SDWebImage
 
-class ImageCollectionViewCell : UICollectionViewCell {
+enum CPFPosterTitleType {
+    case Always
+    case FocusedOnly
+}
+
+class CPFPosterCell: UICollectionViewCell {
     
     
-    var imageView: UIImageView
+    let imageView: UIImageView
+    let titleLabel: UILabel
     
+    var model: CPFPosterModel? {
+        didSet {
+            titleLabel.text = model?.title
+            imageView.image = nil
+            if let urlString = model?.imageURL {
+                imageView.sd_setImageWithURL(NSURL(string: urlString))
+            }
+            if let image = model?.image {
+                imageView.image = image
+            }
+            titleLabel.alpha = model?.titleType == .Always ? 1.0 : 0.0
+        }
+    }
+    
+    var labelConstraint: Constraint?
     
     override init(frame: CGRect) {
         imageView = UIImageView()
+        titleLabel = UILabel()
+        titleLabel.textAlignment = .Center
+        titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        titleLabel.textColor = UIColor.grayColor()
         super.init(frame: frame)
         
-        
-        
         imageView.image = UIImage(named: "emtyheader")
-        imageView.sd_setImageWithURL(NSURL(string: "https://placehold.it/1280x720"))
+        
 //        #if TARGET_OS_TV
         imageView.adjustsImageWhenAncestorFocused = true
 //        #endif
@@ -32,10 +55,33 @@ class ImageCollectionViewCell : UICollectionViewCell {
         imageView.snp_makeConstraints { make in
             make.edges.equalTo(self.contentView)
         }
+        
+        contentView.addSubview(titleLabel)
+        titleLabel.snp_makeConstraints { make in
+            make.leading.equalTo(contentView.snp_leading)
+            make.trailing.equalTo(contentView.snp_trailing)
+            labelConstraint = make.top.equalTo(contentView.snp_bottom).constraint
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocusInContext(context, withAnimationCoordinator: coordinator)
+        let focused = context.nextFocusedView == self
+        let offset = focused ? 40 : 0
+        labelConstraint?.updateOffset(offset)
+
+        if self.model?.titleType == .FocusedOnly {
+            self.titleLabel.alpha = focused ? 1.0 : 0.0
+        }
+        
+        coordinator.addCoordinatedAnimations({ 
+            self.contentView.layoutIfNeeded()
+            self.titleLabel.textColor = focused ? UIColor.whiteColor() : UIColor.grayColor()
+        }, completion: nil)
     }
     
 }
@@ -65,7 +111,7 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self)
-        collectionView.register(ImageCollectionViewCell.self)
+        collectionView.register(CPFPosterCell.self)
         collectionView.clipsToBounds = false
         return collectionView
     }()
@@ -86,9 +132,7 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let cellHeight = collectionView.bounds.height
-        
-        return CGSize(width: cellHeight / 1.3, height: cellHeight)
+        return delegate?.cpf_collectionView(collectionView, layout: collectionViewLayout, sizeForItemAtIndexPath: adjustedIndexPathForIndexPath(indexPath)) ?? CGSizeZero
     }
     
     override init(frame: CGRect) {
@@ -106,14 +150,24 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        header.frame = CGRect(x: 0, y: 0, width: headerSize().width, height: headerSize().height)
         
         
+        
+    }
+    
+    override var bounds: CGRect {
+        didSet {
+            header.frame = CGRect(x: 0, y: -10, width: headerSize().width, height: headerSize().height)
+        }
     }
     
     func headerSize() -> CGSize {
         let size = header.titleLabel.sizeThatFits(CGSizeZero)
         return size
+    }
+    
+    func adjustedIndexPathForIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+        return NSIndexPath(forItem: indexPath.item, inSection: section)
     }
     
     func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
@@ -128,15 +182,16 @@ class HorizontalCollectionViewCell : UICollectionViewCell, UICollectionViewDataS
         }
         
         coordinator.addCoordinatedAnimations({
-            self.header.frame = CGRect(x: 0, y: adjustOffset ? -50 : 0, width: self.headerSize().width, height: self.headerSize().height)
+            self.header.frame = CGRect(x: 0, y: adjustOffset ? -50 : -10, width: self.headerSize().width, height: self.headerSize().height)
             }, completion: {
                 
         })
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        delegate?.cpf_collectionView(collectionView, didSelectItemAtIndexPath: NSIndexPath(forItem: indexPath.item, inSection: section))
+        delegate?.cpf_collectionView(collectionView, didSelectItemAtIndexPath: adjustedIndexPathForIndexPath(indexPath))
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

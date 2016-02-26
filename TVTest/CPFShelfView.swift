@@ -16,7 +16,7 @@ protocol ShelfViewDataSource: class {
 
 protocol ShelfViewDelegate: class {
     func cpf_collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    func cpf_collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
 }
 
 class CPFShelfView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
